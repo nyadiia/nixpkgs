@@ -19309,6 +19309,8 @@ with pkgs;
 
   qc = callPackage ../development/tools/qc { };
 
+  qcma = libsForQt5.callPackage ../by-name/qc/qcma/package.nix { };
+
   qtcreator = qt6Packages.callPackage ../development/tools/qtcreator {
     inherit (linuxPackages) perf;
     stdenv = llvmPackages.stdenv;
