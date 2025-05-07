@@ -29,7 +29,7 @@ let
       env "PDS_ENV_FILE=$DUMMY_PDS_ENV_FILE"                                                   \
           ${escapeShellArgs cfgSystemd.Environment}                                            \
           ${concatMapStringsSep " " (envFile: "$(cat ${envFile})") cfgSystemd.EnvironmentFile} \
-          ${getExe pkgs.pdsadmin} "$@"
+          ${getExe cfg.pdsadmin.package} "$@"
     '';
 in
 # All defaults are from https://github.com/bluesky-social/pds/blob/8b9fc24cec5f30066b0d0b86d2b0ba3d66c2b532/installer.sh
@@ -157,6 +157,7 @@ in
         defaultText = literalExpression "config.services.pds.enable";
         description = "Add pdsadmin script to PATH";
       };
+      package = mkPackageOption pkgs "pdsadmin" { };
     };
   };
 
